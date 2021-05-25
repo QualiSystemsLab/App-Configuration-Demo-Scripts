@@ -2,7 +2,7 @@
 - name: "my playbook"
   hosts: all
   environment:
-    ANSIBLE_DEPRECATION_WARNINGS=false
+    deprecation_warnings=false
   
   tasks: 
     - name: "Print Hello World"
