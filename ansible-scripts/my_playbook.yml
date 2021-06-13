@@ -1,11 +1,11 @@
 --- 
 - name: "my playbook"
   hosts: all
-  environment:
-    deprecation_warnings=false
   
   tasks: 
     - name: "Print Hello World"
       debug: "msg=\"Hello World\""
+      args:
+        warn: false
 
       
