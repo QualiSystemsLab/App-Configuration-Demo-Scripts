@@ -1,0 +1,10 @@
+--- 
+- name: "my playbook"
+  hosts: all
+  
+  tasks: 
+    - name: "Print Hello World 2!!"
+      debug: "msg=\"Hello World from playbook 2!\""
+ 
+
+      
