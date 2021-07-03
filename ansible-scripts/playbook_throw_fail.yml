@@ -1,9 +1,12 @@
 --- 
-- name: "my playbook"
+- name: "my fail playbook"
   hosts: all
   
   tasks: 
+    - name: "Print Hello!!"
+      debug: "msg=\"Hello from first task\""
     - name: "Throw Fail"
       fail:
         msg: It is a fail!!!
+      when: ansible_ssh_host == "127.0.0.1"
  
