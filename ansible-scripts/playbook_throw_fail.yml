@@ -4,9 +4,7 @@
   
   tasks: 
     - name: "Print Hello!!"
-      debug: "msg=\"Hello from first task\""
-    - name: "Throw Fail"
-      fail:
-        msg: It is a fail!!!
-      when: ansible_ssh_host == "127.0.0.1"
+      debug: 
+        msg: "Hello from first task. Host: {{ ansible_ssh_host }}"
+      failed_when: ansible_ssh_host == "127.0.0.1"
  
