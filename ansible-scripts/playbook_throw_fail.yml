@@ -4,7 +4,6 @@
   
   tasks: 
     - name: "Throw Fail"
-      debug: "msg=\"Hello from Fail playbook\""
       fail:
-        msg: Tis' a FAIL!!!
+        msg: It is a fail!!!
  
