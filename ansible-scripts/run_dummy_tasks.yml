@@ -5,10 +5,10 @@
   tasks: 
     - name: "task 1 play 1"
       pause:
-        seconds: 5
+        seconds: 15
     - name: "task 2 play 1"
       pause:
-        seconds: 5
+        seconds: 15
     - debug:
         msg: "all tasks done play 1"
 
@@ -18,9 +18,9 @@
   tasks: 
     - name: "task 1 play 2"
       pause:
-        seconds: 5
+        seconds: 15
     - name: "task 2 play 2"
       pause:
-        seconds: 5
+        seconds: 15
     - debug:
         msg: "all tasks done play 2"
