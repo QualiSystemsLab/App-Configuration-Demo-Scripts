@@ -24,3 +24,16 @@
         seconds: 15
     - debug:
         msg: "all tasks done play 2"
+
+- name: "third play"
+  hosts: all
+  
+  tasks: 
+    - name: "task 1 play 3"
+      pause:
+        seconds: 15
+    - name: "task 2 play 3"
+      pause:
+        seconds: 15
+    - debug:
+        msg: "all tasks done play 3"
