@@ -1,0 +1,11 @@
+---
+- name: "my retries sample playbook"
+  hosts: all
+
+  tasks:
+    - name: "Print debug messages in retry loop"
+      shell: hostname
+      register: result
+      until: result.stdout.find("lol") != -1
+      retries: 5
+      delay: 5
