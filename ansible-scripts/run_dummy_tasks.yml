@@ -1,39 +1,32 @@
 --- 
-- name: "run serial tasks"
+- name: "my first play"
   hosts: all
   
   tasks: 
     - name: "task 1 play 1"
       pause:
-        seconds: 15
+        seconds: 5
     - name: "task 2 play 1"
       pause:
-        seconds: 15
+        seconds: 5
+    - name: "task 3 play 1"
+      pause:
+        seconds: 5
     - debug:
         msg: "all tasks done play 1"
 
-- name: "second play"
+- name: "my second play"
   hosts: all
   
   tasks: 
     - name: "task 1 play 2"
       pause:
-        seconds: 15
+        seconds: 5
     - name: "task 2 play 2"
       pause:
-        seconds: 15
-    - debug:
-        msg: "all tasks done play 2"
-
-- name: "third play"
-  hosts: all
-  
-  tasks: 
-    - name: "task 1 play 3"
-      pause:
-        seconds: 15
+        seconds: 5
     - name: "task 2 play 3"
       pause:
-        seconds: 15
+        seconds: 5
     - debug:
-        msg: "all tasks done play 3"
+        msg: "all tasks done play 2"
