@@ -1,0 +1,10 @@
+---
+  - name: test json
+    hosts: localhost
+    vars:
+      my_json: '[{"my_fruit": "apple"},{"my_fruit": "orange"}]'
+    tasks:
+      - name: print json list
+        loop: "{{ my_json | from_json }}"
+        debug:
+          msg: "{{ 'value: ' + item.my_fruit }}"
