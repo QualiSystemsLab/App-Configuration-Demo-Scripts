@@ -1,0 +1,11 @@
+--- 
+- name: "my playbook"
+  hosts: all
+  
+  tasks: 
+    - name: "Print out the variable"
+      debug:
+        msg: "Variable value is: {{ my_variable | default('default_value') }}"
+ 
+
+      
