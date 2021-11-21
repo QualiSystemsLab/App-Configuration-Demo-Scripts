@@ -1,0 +1,7 @@
+
+tasks: 
+  - name: "Print Hello World"
+    debug: "msg=\"Hello World from my_task.yml\""
+ 
+
+      

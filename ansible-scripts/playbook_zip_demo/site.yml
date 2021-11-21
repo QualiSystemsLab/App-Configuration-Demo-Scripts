@@ -1,0 +1,6 @@
+--- 
+- name: "my playbook"
+  hosts: all
+  
+  tasks: 
+    - include: my_tasks.yml
