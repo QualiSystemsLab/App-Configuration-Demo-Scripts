@@ -1,4 +1,3 @@
-tasks: 
-  - name: "Print Hello World"
-    debug: "msg=\"Hello World from my_tasks.yml\""
+- name: "Print Hello World"
+  debug: "msg=\"Hello World from my_tasks.yml\""
  
