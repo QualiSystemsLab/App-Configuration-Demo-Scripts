@@ -1,6 +1,6 @@
 --- 
 - name: "my playbook"
   hosts: all
-  
   tasks: 
-  - import_tasks: my_tasks.yml
+    - name: run imported task
+      import_tasks: my_tasks.yml
