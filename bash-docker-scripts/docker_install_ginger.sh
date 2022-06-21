@@ -458,7 +458,6 @@ do_install() {
 				fi
 			)
 			echo_docker_as_nonroot
-			exit 0
 			;;
 		centos|fedora|rhel)
 			if [ "$(uname -m)" != "s390x" ] && [ "$lsb_dist" = "rhel" ]; then
@@ -550,7 +549,6 @@ do_install() {
 				$sh_c "$pkg_manager install -y -q $pkgs"
 			)
 			echo_docker_as_nonroot
-			exit 0
 			;;
 		sles)
 			if [ "$(uname -m)" != "s390x" ]; then
@@ -634,7 +632,6 @@ do_install() {
 				$sh_c "zypper -q install -y $pkgs"
 			)
 			echo_docker_as_nonroot
-			exit 0
 			;;
 		*)
 			if [ -z "$lsb_dist" ]; then
