@@ -657,14 +657,26 @@ do_install() {
 
 # wrapped up in a function so that we have some protection against only getting
 # half the file during "curl | sh"
+echo "installing docker..."
 do_install
+echo "docker install complete"
+
+echo "=== starting docker flow for ginger agent container ==="
+echo "Execution Handler URL: $EXECUTION_HANDLER_URL"
+echo "Ginger Version: $AGENT_VERSION"
+echo "Agent Name: $AGENT_NAME"
+echo "Agent Tag: $AGENT_TAG"
+echo "Agent Port: $AGENT_PORT"
+echo "Agent Capacity: $AGENT_CAPACITY"
+echo "Agent Host URL: $AGENT_HOST_URL"
 
 echo "pulling latest ginger container..."
-sudo docker pull ghcr.io/ginger-automation/gingerexecutionservice:latest
+sudo docker pull ghcr.io/ginger-automation/gingerexecutionservice:$AGENT_VERSION
 
-echo "=== docker images ==="
+echo "=== verifying docker images ==="
 sudo docker images -a
 
-echo "running ginger container - registering to handler url: $EXECUTION_HANDLER_URL"
-sudo docker run ghcr.io/ginger-automation/gingerexecutionservice:latest --AgentConfigurations:HandlerURL=$EXECUTION_HANDLER_URL --AgentConfigurations:Name=DockerAgent1 --AgentConfigurations:TagName=DockerAgent --AgentConfigurations:ProcessesCapacity=2 --AgentConfigurations:DisableHandlerIpFilter=True
+echo "starting docker run command..."
+sudo docker run --network="host" -p $AGENT_PORT:$AGENT_PORT ghcr.io/ginger-automation/gingerexecutionservice:$AGENT_VERSION --AgentConfigurations:HandlerURL=$EXECUTION_HANDLER_URL --AgentConfigurations:Name=$AGENT_NAME --AgentConfigurations:TagName=$AGENT_TAG --AgentConfigurations:ProcessesCapacity=$AGENT_CAPACITY --AgentConfigurations:DisableHandlerIpFilter=True --AgentConfigurations:AgentURL=$AGENT_AGENT_HOST_URL --AgentConfigurations:AgentPort=$AGENT_PORT --GingerExecuterConfigurations:Type="Dll" --GingerExecuterConfigurations:ExecuterPath="/GingerRuntime/GingerRuntime.dll" --GingerExecuterConfigurations:WorkspaceRootPath="/AgentWorkspace/$AGENT_NAME"
 
+echo "script complete"
