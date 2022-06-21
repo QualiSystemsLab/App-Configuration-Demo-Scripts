@@ -265,22 +265,6 @@ check_forked() {
 do_install() {
 	echo "# Executing docker install script, commit: $SCRIPT_COMMIT_SHA"
 
-	if command_exists docker; then
-		cat >&2 <<-'EOF'
-			Warning: the "docker" command appears to already exist on this system.
-
-			If you already have Docker installed, this script can cause trouble, which is
-			why we're displaying this warning and provide the opportunity to cancel the
-			installation.
-
-			If you installed the current Docker package using this script and are using it
-			again to update Docker, you can safely ignore this message.
-
-			You may press Ctrl+C now to abort this script.
-		EOF
-		( set -x; sleep 20 )
-	fi
-
 	user="$(id -un 2>/dev/null || true)"
 
 	sh_c='sh -c'
@@ -666,7 +650,7 @@ echo "Agent Port: $AGENT_PORT"
 echo "Agent Capacity: $AGENT_CAPACITY"
 echo "Agent Host URL: $AGENT_HOST_URL"
 
-echo "pulling latest ginger container..."
+echo "pulling ginger container version $AGENT_VERSION..."
 sudo docker pull ghcr.io/ginger-automation/gingerexecutionservice:$AGENT_VERSION
 
 echo "=== verifying docker images ==="
