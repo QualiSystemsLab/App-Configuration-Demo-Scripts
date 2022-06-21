@@ -677,6 +677,6 @@ echo "=== verifying docker images ==="
 sudo docker images -a
 
 echo "starting docker run command..."
-sudo docker run --network="host" -p $AGENT_PORT:$AGENT_PORT ghcr.io/ginger-automation/gingerexecutionservice:$AGENT_VERSION --AgentConfigurations:HandlerURL=$EXECUTION_HANDLER_URL --AgentConfigurations:Name=$AGENT_NAME --AgentConfigurations:TagName=$AGENT_TAG --AgentConfigurations:ProcessesCapacity=$AGENT_CAPACITY --AgentConfigurations:DisableHandlerIpFilter=True --AgentConfigurations:AgentURL=$AGENT_AGENT_HOST_URL --AgentConfigurations:AgentPort=$AGENT_PORT --GingerExecuterConfigurations:Type="Dll" --GingerExecuterConfigurations:ExecuterPath="/GingerRuntime/GingerRuntime.dll" --GingerExecuterConfigurations:WorkspaceRootPath="/AgentWorkspace/$AGENT_NAME"
+# sudo docker run --network="host" -p $AGENT_PORT:$AGENT_PORT ghcr.io/ginger-automation/gingerexecutionservice:$AGENT_VERSION --AgentConfigurations:HandlerURL=$EXECUTION_HANDLER_URL --AgentConfigurations:Name=$AGENT_NAME --AgentConfigurations:TagName=$AGENT_TAG --AgentConfigurations:ProcessesCapacity=$AGENT_CAPACITY --AgentConfigurations:DisableHandlerIpFilter=True --AgentConfigurations:AgentURL=$AGENT_AGENT_HOST_URL --AgentConfigurations:AgentPort=$AGENT_PORT --GingerExecuterConfigurations:Type="Dll" --GingerExecuterConfigurations:ExecuterPath="/GingerRuntime/GingerRuntime.dll" --GingerExecuterConfigurations:WorkspaceRootPath="/AgentWorkspace/$AGENT_NAME"
 
 echo "script complete"
