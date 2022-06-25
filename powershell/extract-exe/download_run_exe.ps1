@@ -2,13 +2,18 @@
 
 $WebUrl = $env:WebUrl 
 $ZipName = "my_archive.zip"
+$ExeFolder = "C:\my-exe"
+$ZipPath = "$ExeFolder\$ZipName"
 $ExeName = "hello_world.exe"
 
-# download zip from target url
-Invoke-WebRequest $WebUrl -OutFile .\$ZipName
+# Create Parent Exe Folder
+New-Item -ItemType Directory -Force -Path $ExeFolder
 
-# extract zip - overwrite existing
-Expand-Archive -Path .\$ZipName -DestinationPath . -Force
+# download zip from target url to Exe Folder
+Invoke-WebRequest $WebUrl -OutFile $ZipPath
+
+# extract exe from zip - overwrite existing
+Expand-Archive -Path $ZipPath -DestinationPath $ExeFolder
 
 # Run Exe
-& .\$ExeName
+& $ExeFolder\$ExeName
