@@ -10,5 +10,5 @@ sudo python3 -m pip install ansible
 echo "install pywinrm"
 sudo python3 -m pip install pywinrm
 
-echo "install ssh pass"
-sudo yum install sshpass
+echo "force install ssh pass"
+sudo yum -y install sshpass
