@@ -1,3 +1,4 @@
+#!/bin/sh
 HOSTNAME=$(hostname)
 MY_IP=$(hostname -I)
 echo Hello from hostname: $HOSTNAME
