@@ -75,7 +75,7 @@ fi
 echo "Starting ES install"
 set -e
 EXIT_CODE=0
-sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME" >/dev/null || EXIT_CODE=$?
+sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME" >/dev/null 2>&1 || EXIT_CODE=$?
 echo "ES install completed with exit code: $EXIT_CODE"
 
 echo "Validate ES Status:"
@@ -86,12 +86,12 @@ echo "ES status code: $EXIT_CODE"
 
 echo "upgrading pip to latest"
 EXIT_CODE=0
-sudo python3 -m pip install --upgrade pip >/dev/null || EXIT_CODE=$?
+sudo python3 -m pip install --upgrade pip >/dev/null 2>&1 || EXIT_CODE=$?
 echo "Upgrade pip completed with exit code: $EXIT_CODE"
 
 echo "Installing Ansible"
 EXIT_CODE=0
-sudo python3 -m pip install ansible >/dev/null || EXIT_CODE=$?
+sudo python3 -m pip install ansible >/dev/null 2>&1 || EXIT_CODE=$?
 echo "Install Ansible completed with exit code: $EXIT_CODE"
 
 echo "Installing Pywinrm"
