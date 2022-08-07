@@ -1,37 +1,40 @@
+# To run: 
+# sudo ./install_ansible.sh <CS_HOST> <CS_USER> <CS_PASSWORD> <ES_NAME> <CS_VERSION>
+# only cloudshell server is mandatory, the rest have defaults (admin, admin, linux-es-<server_ip>, 2022.1)
 VERSION_2022_1 = https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-184332/ES/cloudshell_es_install_script.sh
 VERSION_2021_2 = https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
 VERSION_2020_2 = https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
 
-CS_HOST = $1
-CS_USER = $2
-CS_PASSWORD = $3
-ES_NAME = $4
-CS_VERSION = $5
+CS_HOST=$1
+CS_USER=$2
+CS_PASSWORD=$3
+ES_NAME=$4
+CS_VERSION=$5
 
 # command line variables will over-ride env variables
 if [[ -z $CS_HOST ]]
 then
-  $CS_HOST = $env:CS_HOST
+  $CS_HOST=$env:CS_HOST
 fi
 
 if [[ -z $CS_USER ]]
 then
-  $CS_USER = $env:CS_USER
+  $CS_USER=$env:CS_USER
 fi
 
 if [[ -z $CS_PASSWORD ]]
 then
-  $CS_PASSWORD = $env:CS_PASSWORD
+  $CS_PASSWORD=$env:CS_PASSWORD
 fi
 
 if [[ -z $ES_NAME ]]
 then
-  $ES_NAME = $env:ES_NAME
+  $ES_NAME=$env:ES_NAME
 fi
 
 if [[ -z $CS_VERSION ]]
 then
-  $CS_VERSION = $env:CS_VERSION
+  $CS_VERSION=$env:CS_VERSION
 fi
 
 # Validate inputs and set defaults
@@ -43,23 +46,23 @@ fi
 
 if [[ -z $CS_USER ]]
 then
-  $CS_USER = admin
+  $CS_USER=admin
 fi
 
 if [[ -z $CS_PASSWORD ]]
 then
-  $CS_PASSWORD = admin
+  $CS_PASSWORD=admin
 fi
 
 if [[ -z $ES_NAME ]]
 then
-  primary_ip = hostname -I
-  $ES_NAME = "ES-Linux-$primary_ip"
+  primary_ip=hostname -I
+  $ES_NAME="ES-Linux-$primary_ip"
 fi
 
 if [[ -z $CS_VERSION ]]
 then
-  $CS_VERSION = 2022.1
+  $CS_VERSION=2022.1
 fi
 
 
@@ -67,19 +70,19 @@ SCRIPT_URL = ""
 # Get install url by lookup [2022.1, 2021.2, 2020.2] valid options. Empty input default to 2022.1
 if [[ -z $CS_VERSION ]]
 then
-    $SCRIPT_URL = $VERSION_2022_1
+    $SCRIPT_URL=$VERSION_2022_1
 elif [[ $CS_VERSION -eq 2022.1 ]]
 then
-  $SCRIPT_URL = $VERSION_2022_1
+  $SCRIPT_URL=$VERSION_2022_1
 elif [[ $CS_VERSION -eq 2021.2 ]]
 then
-  $SCRIPT_URL = $VERSION_2021_2
+  $SCRIPT_URL=$VERSION_2021_2
 elif [[ $CS_VERSION -eq 2021.2 ]]
 then
-  $SCRIPT_URL = $VERSION_2021_2
+  $SCRIPT_URL=$VERSION_2021_2
 elif [[ $CS_VERSION -eq 2020.2 ]]
 then
-  $SCRIPT_URL = $VERSION_2020_2
+  $SCRIPT_URL=$VERSION_2020_2
 else
   $CS_VERSION not supported by this script
   exit 1
