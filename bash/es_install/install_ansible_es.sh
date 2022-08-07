@@ -5,12 +5,18 @@ VERSION_2022_1=https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-184332
 VERSION_2021_2=https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
 VERSION_2020_2=https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
 
+CS_HOST_ENV=$env:CS_HOST
+CS_USER_ENV=$env:CS_USER
+CS_PASSWORD_ENV=$env:CS_PASSWORD
+ES_NAME_ENV=$env:ES_NAME
+CS_VERSION_ENV=$env:CS_VERSION
+
 # Use positional command line args for manual execution, fallback to environment variables (for running from cloudshell)
-CS_HOST="${1:$env:CS_HOST}"
-CS_USER="${2:$env:CS_USER}"
-CS_PASSWORD="${3:$env:CS_PASSWORD}"
-ES_NAME="${4:$env:ES_NAME}"
-CS_VERSION="${5:$env:CS_VERSION}"
+CS_HOST=${1:-$CS_HOST_ENV}
+CS_USER=${2:-$CS_USER_ENV}
+CS_PASSWORD=${3:-$CS_PASSWORD_ENV}
+ES_NAME=${4:-$ES_NAME_ENV}
+CS_VERSION=${5:$CS_VERSION_ENV}
 
 # Validate inputs and set defaults
 if [[ -z $CS_HOST ]]
