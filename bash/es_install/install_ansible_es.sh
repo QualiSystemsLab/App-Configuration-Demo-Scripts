@@ -5,37 +5,12 @@ VERSION_2022_1=https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-184332
 VERSION_2021_2=https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
 VERSION_2020_2=https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
 
-CS_HOST=$1
-CS_USER=$2
-CS_PASSWORD=$3
-ES_NAME=$4
-CS_VERSION=$5
-
-# command line variables will over-ride env variables
-if [[ -z $CS_HOST ]]
-then
-  $CS_HOST=$env:CS_HOST
-fi
-
-if [[ -z $CS_USER ]]
-then
-  $CS_USER=$env:CS_USER
-fi
-
-if [[ -z $CS_PASSWORD ]]
-then
-  $CS_PASSWORD=$env:CS_PASSWORD
-fi
-
-if [[ -z $ES_NAME ]]
-then
-  $ES_NAME=$env:ES_NAME
-fi
-
-if [[ -z $CS_VERSION ]]
-then
-  $CS_VERSION=$env:CS_VERSION
-fi
+# Use positional command line args for manual execution, fallback to environment variables (for running from cloudshell)
+CS_HOST=${1:$env:CS_HOST}
+CS_USER=${2:$env:CS_USER}
+CS_PASSWORD=${3:$env:CS_PASSWORD}
+ES_NAME=${4:$env:ES_NAME}
+CS_VERSION=${5:$env:CS_VERSION}
 
 # Validate inputs and set defaults
 if [[ -z $CS_HOST ]]
@@ -66,7 +41,7 @@ then
 fi
 
 
-SCRIPT_URL = ""
+SCRIPT_URL=""
 # Get install url by lookup [2022.1, 2021.2, 2020.2] valid options. Empty input default to 2022.1
 if [[ -z $CS_VERSION ]]
 then
