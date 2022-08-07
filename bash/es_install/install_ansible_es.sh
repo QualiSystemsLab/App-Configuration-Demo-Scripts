@@ -56,7 +56,7 @@ elif [ $CS_VERSION = "2020.2" ]
 then
     SCRIPT_URL=$VERSION_2020_2
 else
-    echo "$CS_VERSION not supported by this script"
+    echo "$CS_VERSION not supported by this script. Exiting."
     exit 1
 fi
 
