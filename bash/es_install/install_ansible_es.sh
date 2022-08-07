@@ -63,26 +63,40 @@ fi
 
 # Begin doing stuff
 echo "installing Cloudshell ES version $CS_VERSION"
-echo Script Url: $SCRIPT_URL
 
-sudo wget $SCRIPT_URL
-sudo chmod +x ./cloudshell_es_install_script.sh
+if [ ! -f ./cloudshell_es_install_script.sh ]
+then
+    echo "Download Script from url: $SCRIPT_URL"
+    sudo wget $SCRIPT_URL
+    sudo chmod +x ./cloudshell_es_install_script.sh
+fi
 
 # don't stop on failed install, print exit code and continue with ansible install
-echo "Got script. Starting ES install"
+echo "Starting ES install"
 set -e
 EXIT_CODE=0
 sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME" >/dev/null || EXIT_CODE=$?
 echo "ES install completed with exit code: $EXIT_CODE"
 
+echo "Validate ES Status:"
+EXIT_CODE=0
+sudo systemctl status es.service || EXIT_CODE=$?
+echo "ES status code: $EXIT_CODE"
+
 echo "upgrading pip to latest"
-sudo python3 -m pip install --upgrade pip
+EXIT_CODE=0
+sudo python3 -m pip install --upgrade pip >/dev/null || EXIT_CODE=$?
+echo "Upgrade pip completed with exit code: $EXIT_CODE"
 
 echo "Installing Ansible"
-sudo python3 -m pip install ansible
+EXIT_CODE=0
+sudo python3 -m pip install ansible >/dev/null || EXIT_CODE=$?
+echo "Install Ansible completed with exit code: $EXIT_CODE"
 
 echo "Installing Pywinrm"
 sudo python3 -m pip install pywinrm
 
 echo "Yum installing SSH Pass"
 sudo yum -y install sshpass
+
+echo "Ansible ES script Complete!"
