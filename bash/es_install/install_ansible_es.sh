@@ -1,9 +1,9 @@
 # To run: 
 # sudo ./install_ansible.sh <CS_HOST> <CS_USER> <CS_PASSWORD> <ES_NAME> <CS_VERSION>
 # only cloudshell server is mandatory, the rest have defaults (admin, admin, linux-es-<server_ip>, 2022.1)
-VERSION_2022_1 = https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-184332/ES/cloudshell_es_install_script.sh
-VERSION_2021_2 = https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
-VERSION_2020_2 = https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
+VERSION_2022_1=https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-184332/ES/cloudshell_es_install_script.sh
+VERSION_2021_2=https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
+VERSION_2020_2=https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
 
 CS_HOST=$1
 CS_USER=$2
