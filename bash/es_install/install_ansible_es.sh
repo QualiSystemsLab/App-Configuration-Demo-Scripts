@@ -72,7 +72,7 @@ echo "Got script. Starting ES install"
 sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME"
 
 echo "upgrading pip to latest"
-sudo pip3 install --upgrade pip
+sudo python3 -m pip install --upgrade pip
 
 echo "Installing Ansible"
 sudo python3 -m pip install ansible
