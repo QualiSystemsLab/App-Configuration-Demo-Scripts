@@ -16,7 +16,7 @@ ES_NAME=${5:-$ES_NAME}
 # Validate inputs and set defaults
 if [ -z "${CS_HOST}" ]
 then
-    echo Cloudshell server is required param. Exiting.
+    echo "Cloudshell server param is required. Exiting."
     exit 1
 fi
 if [ -z "${CS_USER}" ]
@@ -56,13 +56,13 @@ elif [ $CS_VERSION = "2020.2" ]
 then
     SCRIPT_URL=$VERSION_2020_2
 else
-    $CS_VERSION not supported by this script
+    "$CS_VERSION not supported by this script"
     exit 1
 fi
 
 
 # Begin doing stuff
-echo installing Cloudshell ES version $CS_VERSION
+echo "installing Cloudshell ES version $CS_VERSION"
 echo Script Url: $SCRIPT_URL
 
 sudo wget $SCRIPT_URL
