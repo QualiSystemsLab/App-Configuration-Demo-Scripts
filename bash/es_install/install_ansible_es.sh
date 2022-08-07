@@ -68,8 +68,12 @@ echo Script Url: $SCRIPT_URL
 sudo wget $SCRIPT_URL
 sudo chmod +x ./cloudshell_es_install_script.sh
 
+# don't stop on failed install, print exit code and continue with ansible install
 echo "Got script. Starting ES install"
-sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME"
+set -e
+EXIT_CODE=0
+sudo ./cloudshell_es_install_script.sh "$CS_HOST" "$CS_USER" "$CS_PASSWORD" "$ES_NAME" >/dev/null || EXIT_CODE=$?
+echo "ES install completed with exit code: $EXIT_CODE"
 
 echo "upgrading pip to latest"
 sudo python3 -m pip install --upgrade pip
