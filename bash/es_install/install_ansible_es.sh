@@ -2,9 +2,69 @@ VERSION_2022_1 = https://s3.amazonaws.com/quali-prod-binaries/2022.1.0.1851-1843
 VERSION_2021_2 = https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-182406/ES/cloudshell_es_install_script.sh
 VERSION_2020_2 = https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh
 
-CS_VERSION = $env:CS_VERSION
-SCRIPT_URL = ""
+CS_HOST = $1
+CS_USER = $2
+CS_PASSWORD = $3
+ES_NAME = $4
+CS_VERSION = $5
 
+# command line variables will over-ride env variables
+if [[ -z $CS_HOST ]]
+then
+  $CS_HOST = $env:CS_HOST
+fi
+
+if [[ -z $CS_USER ]]
+then
+  $CS_USER = $env:CS_USER
+fi
+
+if [[ -z $CS_PASSWORD ]]
+then
+  $CS_PASSWORD = $env:CS_PASSWORD
+fi
+
+if [[ -z $ES_NAME ]]
+then
+  $ES_NAME = $env:ES_NAME
+fi
+
+if [[ -z $CS_VERSION ]]
+then
+  $CS_VERSION = $env:CS_VERSION
+fi
+
+# Validate inputs and set defaults
+if [[ -z $CS_HOST ]]
+then
+  echo Cloudshell server is required param. Exiting.
+  exit 1
+fi
+
+if [[ -z $CS_USER ]]
+then
+  $CS_USER = admin
+fi
+
+if [[ -z $CS_PASSWORD ]]
+then
+  $CS_PASSWORD = admin
+fi
+
+if [[ -z $ES_NAME ]]
+then
+  primary_ip = hostname -I
+  $ES_NAME = "ES-Linux-$primary_ip"
+fi
+
+if [[ -z $CS_VERSION ]]
+then
+  $CS_VERSION = 2022.1
+fi
+
+
+SCRIPT_URL = ""
+# Get install url by lookup [2022.1, 2021.2, 2020.2] valid options. Empty input default to 2022.1
 if [[ -z $CS_VERSION ]]
 then
     $SCRIPT_URL = $VERSION_2022_1
@@ -25,6 +85,8 @@ else
   exit 1
 fi
 
+
+# Begin doing stuff
 echo installing Cloudshell ES version $CS_VERSION
 echo Script Url: $SCRIPT_URL
 
