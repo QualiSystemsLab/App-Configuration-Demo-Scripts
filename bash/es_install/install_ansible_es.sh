@@ -43,7 +43,7 @@ fi
 
 if [[ -z $CS_VERSION ]]
 then
-  $CS_VERSION=2022.1
+  $CS_VERSION="2022.1"
 fi
 
 
@@ -52,16 +52,16 @@ SCRIPT_URL=""
 if [[ -z $CS_VERSION ]]
 then
     $SCRIPT_URL=$VERSION_2022_1
-elif [[ $CS_VERSION -eq 2022.1 ]]
+elif [[ $CS_VERSION -eq "2022.1" ]]
 then
   $SCRIPT_URL=$VERSION_2022_1
-elif [[ $CS_VERSION -eq 2021.2 ]]
+elif [[ $CS_VERSION -eq "2021.2" ]]
 then
   $SCRIPT_URL=$VERSION_2021_2
-elif [[ $CS_VERSION -eq 2021.2 ]]
+elif [[ $CS_VERSION -eq "2021.2" ]]
 then
   $SCRIPT_URL=$VERSION_2021_2
-elif [[ $CS_VERSION -eq 2020.2 ]]
+elif [[ $CS_VERSION -eq "2020.2" ]]
 then
   $SCRIPT_URL=$VERSION_2020_2
 else
