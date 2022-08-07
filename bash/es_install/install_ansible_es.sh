@@ -6,17 +6,17 @@ VERSION_2021_2="https://quali-prod-binaries.s3.amazonaws.com/2021.2.0.1673-18240
 VERSION_2020_2="https://quali-prod-binaries.s3.amazonaws.com/2020.2.0.4142-182042/ES/cloudshell_es_install_script.sh"
 
 CS_HOST_ENV=$env:CS_HOST
+CS_VERSION_ENV=$env:CS_VERSION
 CS_USER_ENV=$env:CS_USER
 CS_PASSWORD_ENV=$env:CS_PASSWORD
 ES_NAME_ENV=$env:ES_NAME
-CS_VERSION_ENV=$env:CS_VERSION
 
 # Use positional command line args for manual execution, fallback to environment variables (for running from cloudshell)
 CS_HOST=${1:-$CS_HOST_ENV}
-CS_USER=${2:-$CS_USER_ENV}
-CS_PASSWORD=${3:-$CS_PASSWORD_ENV}
-ES_NAME=${4:-$ES_NAME_ENV}
-CS_VERSION=${5:$CS_VERSION_ENV}
+CS_VERSION=${2:$CS_VERSION_ENV}
+CS_USER=${3:-$CS_USER_ENV}
+CS_PASSWORD=${4:-$CS_PASSWORD_ENV}
+ES_NAME=${5:-$ES_NAME_ENV}
 
 # Validate inputs and set defaults
 if [[ -z $CS_HOST ]]
@@ -50,18 +50,18 @@ fi
 SCRIPT_URL=""
 # Get install url by lookup [2022.1, 2021.2, 2020.2] valid options. Empty input default to 2022.1
 if [[ -z $CS_VERSION ]]
-then
+thencl
     SCRIPT_URL=$VERSION_2022_1
-elif [[ $CS_VERSION -eq "2022.1" ]]
+elif [[ $CS_VERSION == "2022.1" ]]
 then
   SCRIPT_URL=$VERSION_2022_1
-elif [[ $CS_VERSION -eq "2021.2" ]]
+elif [[ $CS_VERSION == "2021.2" ]]
 then
   SCRIPT_URL=$VERSION_2021_2
-elif [[ $CS_VERSION -eq "2021.2" ]]
+elif [[ $CS_VERSION == "2021.2" ]]
 then
   SCRIPT_URL=$VERSION_2021_2
-elif [[ $CS_VERSION -eq "2020.2" ]]
+elif [[ $CS_VERSION == "2020.2" ]]
 then
   SCRIPT_URL=$VERSION_2020_2
 else
