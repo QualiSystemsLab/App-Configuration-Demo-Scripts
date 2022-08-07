@@ -80,6 +80,7 @@ echo "ES install completed with exit code: $EXIT_CODE"
 
 echo "Validate ES Status:"
 EXIT_CODE=0
+systemctl restart es
 sudo systemctl status es.service || EXIT_CODE=$?
 echo "ES status code: $EXIT_CODE"
 
