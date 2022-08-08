@@ -49,9 +49,6 @@ then
 elif [ $CS_VERSION = "2021.2" ]
 then
     SCRIPT_URL=$VERSION_2021_2
-elif [ $CS_VERSION = "2021.2" ]
-then
-    SCRIPT_URL=$VERSION_2021_2
 elif [ $CS_VERSION = "2020.2" ]
 then
     SCRIPT_URL=$VERSION_2020_2
@@ -62,6 +59,9 @@ fi
 
 
 # Begin doing stuff
+echo "Yum installing wget if its not there"
+sudo yum -y install wget
+
 echo "installing Cloudshell ES version $CS_VERSION"
 
 if [ ! -f ./cloudshell_es_install_script.sh ]
