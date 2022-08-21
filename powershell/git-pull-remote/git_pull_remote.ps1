@@ -1,11 +1,11 @@
 # provide comma separated list of execution server IPs
 # credentials are assumed to be same for all servers
-# pre-configure git on all target servers
+# pre-configure git on all target servers and clone repo to same absolute path
 
-$Servers = "192.168.85.33", "192.168.85.25"
-$ServerUser = "Administrator"
-$ServerPass = "Password1"
-$RepoPath = "C:\App-Configuration-Demo-Scripts"
+$Servers = "<SERVER_IP_1>", "<SERVER_IP_2>"
+$ServerUser = "<MY_USER>"
+$ServerPass = "<MY_PASS>"
+$RepoPath = "<GIT_REPO_PATH>"
 $GitExePath = "C:\Program Files\Git\cmd\git.exe"
 
 
