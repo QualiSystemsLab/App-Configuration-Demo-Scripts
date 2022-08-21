@@ -10,29 +10,22 @@ $ServerPass = "<MY_PASS>"
 $RepoPath = "<GIT_REPO_PATH>"
 $GitExePath = "C:\Program Files\Git\cmd\git.exe"
 
-# build credential object
 $PWord = ConvertTo-SecureString -String $ServerPass -AsPlainText -Force
 $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ServerUser, $PWord
 
-#verify that WinRM is setup and configured locally
 Test-WSMan
 
-# iterate over remote servers, validate winrm service and do git pull action
 foreach ($server in $Servers) {
-    Write-Output "testing winrm service on $server..."
+    Write-Output "Running against $server..."
     
-    # see that remote winrm port is listening
+    Write-Output "Checking winrm port:"
     Test-NetConnection -Computername $server -Port 5985
     
-    # validate winrm service on remote
+    Write-Output "Testing Winrm Service:"
     Test-WSMan $server
 
-    # do git pull operation
-    Write-Output "Running against $server.."
-    
-    # remote command - $Using is needed to access global variables
     Invoke-Command -ComputerName $server -Credential $Credential -ScriptBlock {
-        Write-Output "hostname: $(hostname)"
+        Write-Output "Remote Hostname: $(hostname)"
         Set-Location -Path $Using:RepoPath
         
         Write-Output "git pull output:"
