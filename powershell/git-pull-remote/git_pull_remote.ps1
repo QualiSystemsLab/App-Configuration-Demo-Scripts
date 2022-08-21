@@ -1,6 +1,8 @@
 # provide comma separated list of execution server IPs
-# credentials are assumed to be same for all servers
+# server credentials are assumed to be same for all servers
 # pre-configure git on all target servers and clone repo to same absolute path
+# run 'winrm quickconfig' on target execution servers to turn on winrm service
+# add execution servers to trusted host list of script runner machine: Set-Item WSMan:\localhost\Client\TrustedHosts -Value 'IP_A, IP_B'
 
 $Servers = "<SERVER_IP_1>", "<SERVER_IP_2>"
 $ServerUser = "<MY_USER>"
